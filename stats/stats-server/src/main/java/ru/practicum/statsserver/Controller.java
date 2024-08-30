@@ -20,7 +20,7 @@ public final class Controller {
 
     @PostMapping("/hit")
     @ResponseStatus(HttpStatus.CREATED)
-    public StatDto postHit(@RequestBody final StatDto dto){
+    public StatDto postHit(@RequestBody final StatDto dto) {
         dto.setTimestamp(LocalDateTime.now());
         log.info("POST /hit <- {}", dto);
         return service.postHit(dto);
@@ -31,7 +31,7 @@ public final class Controller {
     public List<ViewStats> getViewStats(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") final LocalDateTime start,
                                         @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") final LocalDateTime end,
                                         @RequestParam(required = false, defaultValue = "[]") final List<String> uris,
-                                        @RequestParam(defaultValue = "false") final Boolean unique){
+                                        @RequestParam(defaultValue = "false") final Boolean unique) {
         log.info("GET /stats <- with start={}, end={} uri={} unique={}", start, end, uris, unique);
         return service.getViewStats(start, end, uris, unique);
     }

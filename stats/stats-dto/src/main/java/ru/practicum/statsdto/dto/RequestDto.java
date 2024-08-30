@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
  * future
  */
 @ToString
-@Setter @Getter
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
