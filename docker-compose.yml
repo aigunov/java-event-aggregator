@@ -36,7 +36,7 @@ services:
 
   ewm-db:
     image: postgres:16.1
-    container_name: ewn_db
+    container_name: ewn
     ports:
       - "2323:5432"
     environment:
