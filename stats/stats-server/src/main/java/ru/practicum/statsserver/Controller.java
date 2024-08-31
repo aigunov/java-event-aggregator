@@ -11,7 +11,10 @@ import ru.practicum.statsdto.dto.ViewStats;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
+/**
+ *
+ *RestController
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
