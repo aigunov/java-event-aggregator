@@ -2,7 +2,8 @@ package ru.practicum.statsdto.dto;
 
 import lombok.*;
 
-@Getter @Setter
+@Getter
+@Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor

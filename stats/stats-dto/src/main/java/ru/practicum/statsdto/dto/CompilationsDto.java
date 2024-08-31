@@ -1,13 +1,13 @@
 package ru.practicum.statsdto.dto;
 
-import lombok.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import lombok.*;
 
 import java.util.List;
 
 @ToString
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)

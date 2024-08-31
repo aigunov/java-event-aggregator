@@ -14,6 +14,17 @@ public class BaseClient {
 
     protected final RestTemplate rest;
 
+    private static ResponseEntity<Object> buildResponse(ResponseEntity<Object> response) {
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return response;
+        }
+        ResponseEntity.BodyBuilder bodyBuilder = ResponseEntity.status((response.getStatusCode()));
+        if (response.hasBody()) {
+            return bodyBuilder.body(response.getBody());
+        }
+        return bodyBuilder.build();
+    }
+
     protected <T> ResponseEntity<Object> post(T body) {
         return makeAndSendRequest(HttpMethod.POST, "/hit", null, body);
     }
@@ -44,16 +55,5 @@ public class BaseClient {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         return headers;
-    }
-
-    private static ResponseEntity<Object> buildResponse(ResponseEntity<Object> response) {
-        if (response.getStatusCode().is2xxSuccessful()) {
-            return response;
-        }
-        ResponseEntity.BodyBuilder bodyBuilder = ResponseEntity.status((response.getStatusCode()));
-        if (response.hasBody()) {
-            return bodyBuilder.body(response.getBody());
-        }
-        return bodyBuilder.build();
     }
 }

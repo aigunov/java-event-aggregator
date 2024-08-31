@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import ru.practicum.statsdto.dto.ViewStats;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,8 +21,8 @@ public interface StatisticsRepository extends JpaRepository<Statistic, Long> {
             group by st.app, st.uri
             """, nativeQuery = true)
     List<Object[]> getViewStatistics(@Param("start") final LocalDateTime start,
-                                      @Param("end") final LocalDateTime end,
-                                      @Param("uris") final List<String> uris);
+                                     @Param("end") final LocalDateTime end,
+                                     @Param("uris") final List<String> uris);
 
     @Query(value = """
             select st.app, st.uri, count(distinct st.ip)
@@ -35,6 +34,6 @@ public interface StatisticsRepository extends JpaRepository<Statistic, Long> {
             group by st.app, st.uri
             """, nativeQuery = true)
     List<Object[]> getViewStatisticsUnique(@Param("start") final LocalDateTime start,
-                                      @Param("end") final LocalDateTime end,
-                                      @Param("uris") final List<String> uris);
+                                           @Param("end") final LocalDateTime end,
+                                           @Param("uris") final List<String> uris);
 }
