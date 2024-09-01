@@ -1,33 +1,35 @@
 services:
   stats-server:
-    build: stats/stats-server
-    container_name: ewn_stats_service_container
+    build: ./stats/stats-server
+    container_name: stats-server
     ports:
       - "9090:9090"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats
+      - HOST=stats-db
+      - PORT=5432
+      - NAME=stats-db
       - SPRING_DATASOURCE_USERNAME=dbuser
-      - SPRING_DATASOURCE_PASSWORD=12343
+      - SPRING_DATASOURCE_PASSWORD=12345
     depends_on:
-      - stats-db
+      stats-db:
+        condition: service_healthy
+
 
   enm-service:
-    build: main-service
+    build: ./main-service
     container_name: ewn_service_container
     ports:
       - "8080:8080"
-    depends_on:
-      - ewm-db
 
   stats-db:
     image: postgres:16.1
-    container_name: ewn_stats_db
+    container_name: stats-db
     ports:
       - "6542:5432"
     environment:
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=12345
-      - POSTGRES_DB=stats
+      - POSTGRES_DB=stats-db
     healthcheck:
       test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
       timeout: 5s
@@ -36,7 +38,7 @@ services:
 
   ewm-db:
     image: postgres:16.1
-    container_name: ewn
+    container_name: ewn-db
     ports:
       - "2323:5432"
     environment:
