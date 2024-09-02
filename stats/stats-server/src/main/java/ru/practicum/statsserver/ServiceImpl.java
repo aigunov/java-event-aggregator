@@ -27,7 +27,7 @@ public final class ServiceImpl implements StatService {
 
     @Override
     public List<ViewStats> getViewStats(final LocalDateTime start, final LocalDateTime end,
-                                        final List<String> uris, final Boolean unique) {
+                                        final String[] uris, final Boolean unique) {
         List<ViewStats> viewStatsList = new ArrayList<>();
         if (uris == null) {
             if (unique) {

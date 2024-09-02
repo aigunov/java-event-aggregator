@@ -9,5 +9,5 @@ import java.util.List;
 public interface StatService {
     StatDto postHit(StatDto dto);
 
-    List<ViewStats> getViewStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique);
+    List<ViewStats> getViewStats(LocalDateTime start, LocalDateTime end, String[] uris, Boolean unique);
 }

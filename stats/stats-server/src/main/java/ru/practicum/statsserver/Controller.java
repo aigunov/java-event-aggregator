@@ -32,7 +32,7 @@ public final class Controller {
     @ResponseStatus(HttpStatus.OK)
     public List<ViewStats> getViewStats(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") final LocalDateTime start,
                                         @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") final LocalDateTime end,
-                                        @RequestParam(required = false, defaultValue = "[]") final List<String> uris,
+                                        @RequestParam(required = false) final String[] uris,
                                         @RequestParam(defaultValue = "false") final Boolean unique) {
         log.info("GET /stats <- with start={}, end={} uri={} unique={}", start, end, uris, unique);
         return service.getViewStats(start, end, uris, unique);
