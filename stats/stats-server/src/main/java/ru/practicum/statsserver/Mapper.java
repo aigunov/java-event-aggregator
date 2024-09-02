@@ -2,7 +2,6 @@ package ru.practicum.statsserver;
 
 import lombok.experimental.UtilityClass;
 import ru.practicum.statsdto.dto.StatDto;
-import ru.practicum.statsdto.dto.ViewStats;
 
 @UtilityClass
 public class Mapper {
@@ -32,14 +31,4 @@ public class Mapper {
                 .build();
     }
 
-    /**
-     * Object --> ViewStats
-     */
-    ViewStats toViewStats(Object[] object) {
-        return ViewStats.builder()
-                .app((String) object[0])
-                .uri((String) object[1])
-                .hit((Long) object[2])
-                .build();
-    }
 }
