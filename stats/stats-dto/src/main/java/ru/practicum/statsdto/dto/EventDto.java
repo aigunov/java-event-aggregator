@@ -14,6 +14,7 @@ public class EventDto {
     //---OnCreateFields---
     private String annotation;
     private int categoryId;
+    private int userId;
     private String description;
     private LocalDateTime eventDate;
     private Location location;
@@ -32,7 +33,6 @@ public class EventDto {
     private int views;
     private UserDto initiator;
     private String stateAction;
-
 
     @Builder
     public record Location(double lat, double lon) {
