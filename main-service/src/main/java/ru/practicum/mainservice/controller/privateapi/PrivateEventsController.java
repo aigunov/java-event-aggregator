@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.mainservice.model.RequestParametersDTO;
+import ru.practicum.mainservice.model.RequestParameters;
 import ru.practicum.mainservice.service.interfaces.EventService;
 import ru.practicum.statsdto.dto.EventDto;
 import ru.practicum.statsdto.dto.RequestDto;
@@ -25,7 +25,7 @@ public class PrivateEventsController {
                                     @RequestParam(required = false) final int size) {
         log.info("GET /users/{}/events?from={}, size={}", userId, from, size);
         return service.getUserEvents(
-                RequestParametersDTO.builder()
+                RequestParameters.builder()
                         .page(PageRequest.of(from / size, size))
                         .userId(userId)
                         .build()

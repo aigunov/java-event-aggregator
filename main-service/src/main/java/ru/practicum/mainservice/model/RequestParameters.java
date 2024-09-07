@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class RequestParametersDTO {
+public class RequestParameters {
     private int userId;
     private int[] users;
     private int[] ids;
     private int[] categories;
-    private EventStates[] states;
+    private States[] states;
     private LocalDateTime rangeEnd;
     private LocalDateTime rangeStart;
     //    private int size;

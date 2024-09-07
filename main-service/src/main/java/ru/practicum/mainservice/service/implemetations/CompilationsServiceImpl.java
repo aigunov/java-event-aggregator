@@ -1,7 +1,7 @@
 package ru.practicum.mainservice.service.implemetations;
 
 import org.springframework.stereotype.Service;
-import ru.practicum.mainservice.model.RequestParametersDTO;
+import ru.practicum.mainservice.model.RequestParameters;
 import ru.practicum.mainservice.service.interfaces.CompilationsService;
 import ru.practicum.statsdto.dto.CompilationsDto;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class CompilationsServiceImpl implements CompilationsService {
     @Override
-    public List<CompilationsDto> getCompilations(RequestParametersDTO body) {
+    public List<CompilationsDto> getCompilations(RequestParameters body) {
         return List.of();
     }
 

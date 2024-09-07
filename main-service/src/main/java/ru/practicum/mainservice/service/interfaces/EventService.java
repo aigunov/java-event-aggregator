@@ -1,6 +1,6 @@
 package ru.practicum.mainservice.service.interfaces;
 
-import ru.practicum.mainservice.model.RequestParametersDTO;
+import ru.practicum.mainservice.model.RequestParameters;
 import ru.practicum.statsdto.dto.EventDto;
 import ru.practicum.statsdto.dto.RequestDto;
 
@@ -9,9 +9,9 @@ import java.util.List;
 public interface EventService {
     EventDto adminUpdateEvent(EventDto dto);
 
-    List<EventDto> adminSearchEvents(RequestParametersDTO build);
+    List<EventDto> adminSearchEvents(RequestParameters build);
 
-    List<EventDto> getUserEvents(RequestParametersDTO build);
+    List<EventDto> getUserEvents(RequestParameters build);
 
     EventDto createEvent(EventDto dto);
 
@@ -23,7 +23,7 @@ public interface EventService {
 
     List<RequestDto> eventCreaterUpdateRequest(int userId, int eventId);
 
-    List<EventDto> userSearchEvents(RequestParametersDTO build);
+    List<EventDto> userSearchEvents(RequestParameters build);
 
     EventDto getEvent(int id);
 }

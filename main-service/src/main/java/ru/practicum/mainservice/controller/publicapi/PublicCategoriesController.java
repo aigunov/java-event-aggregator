@@ -15,20 +15,20 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.OK;
 
 @Slf4j
-@RestController("/categories")
+@RestController
 @RequiredArgsConstructor
 public class PublicCategoriesController {
     private final CategoriesService service;
 
     @ResponseStatus(OK)
-    @GetMapping
+    @GetMapping("/categories")
     public List<CategoryDto> getCategories() {
         log.info("GET /categories");
         return service.getCategories();
     }
 
     @ResponseStatus(OK)
-    @GetMapping("/{catId}")
+    @GetMapping("/categories/{catId}")
     public CategoryDto getCategory(@PathVariable final int catId) {
         log.info("GET /categories/{}", catId);
         return service.getCategory(catId);

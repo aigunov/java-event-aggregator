@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.mainservice.model.RequestParametersDTO;
+import ru.practicum.mainservice.model.RequestParameters;
 import ru.practicum.mainservice.model.Sort;
 import ru.practicum.mainservice.service.interfaces.EventService;
 import ru.practicum.statsdto.dto.EventDto;
@@ -35,7 +35,7 @@ public class PublicEventsController {
         log.info("GET /events?text={}categories={}paid={}rangeStart={}rangeEnd={}onlyAvailable={}sort={}from={}size={}",
                 text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size);
         return service.userSearchEvents(
-                RequestParametersDTO.builder()
+                RequestParameters.builder()
                         .text(text)
                         .categories(categories)
                         .paid(paid)

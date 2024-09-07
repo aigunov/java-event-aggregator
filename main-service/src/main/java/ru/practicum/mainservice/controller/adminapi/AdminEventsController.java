@@ -1,14 +1,13 @@
 package ru.practicum.mainservice.controller.adminapi;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.mainservice.model.EventStates;
-import ru.practicum.mainservice.model.RequestParametersDTO;
+import ru.practicum.mainservice.model.RequestParameters;
+import ru.practicum.mainservice.model.States;
 import ru.practicum.mainservice.service.interfaces.EventService;
 import ru.practicum.statsdto.dto.EventDto;
 
@@ -23,8 +22,8 @@ public class AdminEventsController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/admin/events")
-    public List<EventDto> getEvents(@RequestParam(required = false) final int @NonNull [] users,
-                                    @RequestParam(required = false) final EventStates[] @NonNull states,
+    public List<EventDto> getEvents(@RequestParam(required = false) final int[] users,
+                                    @RequestParam(required = false) final States[] states,
                                     @RequestParam(required = false) final int[] categories,
                                     @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") final LocalDateTime rangeStart,
                                     @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") final LocalDateTime rangeEnd,
@@ -34,7 +33,7 @@ public class AdminEventsController {
                 users, states, categories, rangeEnd, rangeStart, from, size);
 
         return service.adminSearchEvents(
-                RequestParametersDTO.builder()
+                RequestParameters.builder()
                         .categories(categories)
                         .users(users)
                         .states(states)

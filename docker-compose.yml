@@ -14,13 +14,6 @@ services:
       stats-db:
         condition: service_healthy
 
-
-  enm-service:
-    build: ./main-service
-    container_name: ewn_service_container
-    ports:
-      - "8080:8080"
-
   stats-db:
     image: postgres:16.1
     container_name: stats-db
@@ -36,12 +29,32 @@ services:
       interval: 5s
       retries: 10
 
+  enm-service:
+    build: ./main-service
+    container_name: ewn_service_container
+    ports:
+      - "8080:8080"
+    environment:
+      - HOST=ewn-db
+      - PORT=2323
+      - NAME=ewn-db
+      - SPRING_DATASOURCE_USERNAME=dbuser
+      - SPRING_DATASOURCE_PASSWORD=12345
+    depends_on:
+      ewm-db:
+        condition: service_healthy
+
   ewm-db:
     image: postgres:16.1
     container_name: ewn-db
     ports:
-      - "2323:5432"
+      - "6432:5432"
     environment:
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=12345
-      - POSTGRES_DB=ewn
+      - POSTGRES_DB=ewn-db
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 5s
+      interval: 5s
+      retries: 10

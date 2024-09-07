@@ -1,7 +1,7 @@
 package ru.practicum.mainservice.service.implemetations;
 
 import org.springframework.stereotype.Service;
-import ru.practicum.mainservice.model.RequestParametersDTO;
+import ru.practicum.mainservice.model.RequestParameters;
 import ru.practicum.mainservice.service.interfaces.EventService;
 import ru.practicum.statsdto.dto.EventDto;
 import ru.practicum.statsdto.dto.RequestDto;
@@ -16,12 +16,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> adminSearchEvents(RequestParametersDTO build) {
+    public List<EventDto> adminSearchEvents(RequestParameters build) {
         return List.of();
     }
 
     @Override
-    public List<EventDto> getUserEvents(RequestParametersDTO build) {
+    public List<EventDto> getUserEvents(RequestParameters build) {
         return List.of();
     }
 
@@ -51,7 +51,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> userSearchEvents(RequestParametersDTO build) {
+    public List<EventDto> userSearchEvents(RequestParameters build) {
         return List.of();
     }
 
