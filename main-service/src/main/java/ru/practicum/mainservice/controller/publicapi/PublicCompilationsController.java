@@ -11,6 +11,9 @@ import ru.practicum.mainservice.service.interfaces.CompilationsService;
 
 import java.util.List;
 
+/**
+ *
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
