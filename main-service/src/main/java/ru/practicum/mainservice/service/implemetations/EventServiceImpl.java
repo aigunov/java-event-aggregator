@@ -17,7 +17,6 @@ import ru.practicum.mainservice.repository.RequestRepository;
 import ru.practicum.mainservice.repository.UserRepository;
 import ru.practicum.mainservice.service.interfaces.EventService;
 import ru.practicum.mainservice.stat.StatAdapter;
-import ru.practicum.statsdto.dto.URLParameter;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -92,13 +91,8 @@ public class EventServiceImpl implements EventService {
         if (event.getState() != States.PUBLISHED) {
             throw new NoSuchElementException("Не найден такой event ли он еще не опубликован");
         }
-        var params = URLParameter.builder()
-                .start(LocalDateTime.now().minusDays(1))
-                .end(LocalDateTime.now().plusDays(1))
-                .uris(List.of("/events/" + event.getId()))
-                .build();
         var resp = Mapper.toResponseDto(event);
-        resp.setViews((long) adapter.getStats(params).size());
+        resp.setViews(1L);
         return resp;
     }
 

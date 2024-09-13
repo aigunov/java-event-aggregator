@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import ru.practicum.mainservice.data.dto.EventResponseDto;
-import ru.practicum.statsclient.StatsClient;
+import ru.practicum.statsclient.StatClient;
 import ru.practicum.statsdto.dto.StatDto;
 import ru.practicum.statsdto.dto.URLParameter;
 import ru.practicum.statsdto.dto.ViewStats;
@@ -27,11 +27,11 @@ public class StatAdapter {
     private static final Boolean UNIQUE_VIEWS = Boolean.TRUE;
 
     private final String appName;
-    private final StatsClient statClient;
+    private final StatClient statClient;
     private final ObjectMapper mapper;
 
     @Autowired
-    public StatAdapter(@Value("${app.name}") String appName, StatsClient statsClient, ObjectMapper mapper) {
+    public StatAdapter(@Value("${app.name}") String appName, StatClient statsClient, ObjectMapper mapper) {
         this.appName = appName;
         this.statClient = statsClient;
         this.mapper = mapper;

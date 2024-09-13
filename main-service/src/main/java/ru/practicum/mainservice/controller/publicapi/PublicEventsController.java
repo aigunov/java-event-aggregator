@@ -36,8 +36,8 @@ public class PublicEventsController {
                                             @PositiveOrZero @RequestParam(required = false, defaultValue = "0") final Integer from,
                                             @PositiveOrZero @RequestParam(required = false, defaultValue = "10") final Integer size,
                                             HttpServletRequest request) {
-        log.info("GET /events?text={}categories={}paid={}rangeStart={}rangeEnd={}onlyAvailable={}sort={}from={}size={}",
-                text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size);
+        log.info("GET /events?categories={}paid={}rangeStart={}rangeEnd={}onlyAvailable={}sort={}from={}size={}",
+                categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size);
         var params = RequestParameters.builder()
                 .text(text)
                 .categories(categories)
