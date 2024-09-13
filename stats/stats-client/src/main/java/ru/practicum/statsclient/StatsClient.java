@@ -1,28 +1,83 @@
 package ru.practicum.statsclient;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import ru.practicum.statsdto.dto.StatDto;
+import ru.practicum.statsdto.dto.URLParameter;
 
+import java.util.List;
 import java.util.Map;
 
+//@RequiredArgsConstructor()
+@AllArgsConstructor
 @Service
-public class StatsClient extends BaseClient {
+public class StatsClient {
+    private static final String HIT = "/hit";
+    private static final String STATS = "/stats";
+
+    private final RestTemplate rest;
+
 
     @Autowired
-    public StatsClient(@Value("${ewm-stats-service.url}") String serverUrl, RestTemplateBuilder builder) {
-        super(builder.uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl)).build());
+    public StatsClient(@Value("${stats-server.url}") String serverUrl, RestTemplateBuilder builder) {
+        this.rest = builder.uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
+                .requestFactory(() -> new HttpComponentsClientHttpRequestFactory())
+                .build();
     }
 
-    public ResponseEntity<Object> postHit(StatDto hit) {
-        return post(hit);
+    public ResponseEntity<Object> post(StatDto body) {
+        return makeAndSendRequest(HttpMethod.POST, HIT, null, body);
     }
 
-    public ResponseEntity<Object> getViewStats(Map<String, Object> params) {
-        return get(params);
+    public ResponseEntity<Object> get(URLParameter urlParameter) {
+        Map<String, Object> parameters = PathBuilder.buildParameters(urlParameter);
+        return makeAndSendRequest(HttpMethod.GET, STATS + PathBuilder.buildPath(parameters), parameters, null);
+    }
+
+    private <T> ResponseEntity<Object> makeAndSendRequest(HttpMethod method,
+                                                          String path,
+                                                          @Nullable Map<String, Object> parameters,
+                                                          @Nullable T body) {
+        HttpEntity<T> requestEntity = new HttpEntity<>(body, defaultHeaders());
+
+        ResponseEntity<Object> statsServerResponse;
+        try {
+            if (parameters != null) {
+                statsServerResponse = rest.exchange(path, method, requestEntity, Object.class, parameters);
+            } else {
+                statsServerResponse = rest.exchange(path, method, requestEntity, Object.class);
+            }
+        } catch (HttpStatusCodeException e) {
+            return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsByteArray());
+        }
+        return prepareGatewayResponse(statsServerResponse);
+    }
+
+    private HttpHeaders defaultHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+        return headers;
+    }
+
+    private static ResponseEntity<Object> prepareGatewayResponse(ResponseEntity<Object> response) {
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return response;
+        }
+        ResponseEntity.BodyBuilder responseBuilder = ResponseEntity.status(response.getStatusCode());
+
+        if (response.hasBody()) {
+            return responseBuilder.body(response.getBody());
+        }
+        return responseBuilder.build();
     }
 }

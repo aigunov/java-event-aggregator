@@ -1,13 +1,20 @@
 package ru.practicum.mainservice.service.interfaces;
 
-import ru.practicum.statsdto.dto.RequestDto;
+import jakarta.validation.Valid;
+import ru.practicum.mainservice.data.dto.EventRequestStatusUpdateRequest;
+import ru.practicum.mainservice.data.dto.EventRequestStatusUpdateResult;
+import ru.practicum.mainservice.data.dto.RequestDto;
 
 import java.util.List;
 
 public interface RequestService {
-    List<RequestDto> getRequests(String userId);
+    List<RequestDto> getRequests(final Long userId);
 
-    RequestDto createRequest(RequestDto dto);
+    RequestDto createRequest(final Long userId, final Long eventId);
 
-    RequestDto cancelRequest(int userId, int requestId);
+    RequestDto cancelRequest(final Long userId, final Long requestId);
+
+    List<RequestDto> getEventsRequests(final Long userId, final Long eventId);
+
+    EventRequestStatusUpdateResult eventCreaterUpdateRequest(final Long userId, final Long eventId, @Valid EventRequestStatusUpdateRequest eventRequestStatusUpdateRequest);
 }

@@ -1,29 +1,28 @@
 package ru.practicum.mainservice.service.interfaces;
 
-import ru.practicum.mainservice.model.RequestParameters;
-import ru.practicum.statsdto.dto.EventDto;
-import ru.practicum.statsdto.dto.RequestDto;
+import org.springframework.data.domain.PageRequest;
+import ru.practicum.mainservice.data.dto.EventResponseDto;
+import ru.practicum.mainservice.data.dto.NewEventDto;
+import ru.practicum.mainservice.data.dto.UpdateEventAdminRequest;
+import ru.practicum.mainservice.data.dto.UpdateEventUserRequest;
+import ru.practicum.mainservice.data.model.RequestParameters;
 
 import java.util.List;
 
 public interface EventService {
-    EventDto adminUpdateEvent(EventDto dto);
+    EventResponseDto adminUpdateEvent(Long eventId, UpdateEventAdminRequest dto);
 
-    List<EventDto> adminSearchEvents(RequestParameters build);
+    List<EventResponseDto> adminSearchEvents(RequestParameters build);
 
-    List<EventDto> getUserEvents(RequestParameters build);
+    List<EventResponseDto> getUserEvents(final Long userId, final PageRequest of);
 
-    EventDto createEvent(EventDto dto);
+    EventResponseDto createEvent(Long userId, NewEventDto dto);
 
-    EventDto getEvent(int userId, int eventId);
+    EventResponseDto getEvent(final Long userId, final Long eventId);
 
-    EventDto userUpdateEvent(int userId, int eventId);
+    EventResponseDto userUpdateEvent(final UpdateEventUserRequest dto);
 
-    List<RequestDto> getEventsRequests(int userId, int eventId);
+    List<EventResponseDto> userSearchEvents(RequestParameters build);
 
-    List<RequestDto> eventCreaterUpdateRequest(int userId, int eventId);
-
-    List<EventDto> userSearchEvents(RequestParameters build);
-
-    EventDto getEvent(int id);
+    EventResponseDto getEvent(final Long id);
 }

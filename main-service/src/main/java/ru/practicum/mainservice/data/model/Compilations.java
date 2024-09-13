@@ -1,24 +1,28 @@
-package ru.practicum.mainservice.model;
+package ru.practicum.mainservice.data.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder(toBuilder = true)
 @EqualsAndHashCode(of = {"id"})
 @Entity
 @Table(name = "compilations")
 public class Compilations {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "compilation_seq")
+    @SequenceGenerator(name = "compilation_seq", initialValue = 0, allocationSize = 1)
     private long id;
 
+    @NotBlank
     @Column(name = "title")
     private String title;
 
@@ -28,6 +32,9 @@ public class Compilations {
             joinColumns = @JoinColumn(name = "compilation_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id")
     )
-    private List<Event> events;
+    private Set<Event> events;
 
+
+    @Column(name = "pinned")
+    private boolean pinned;
 }

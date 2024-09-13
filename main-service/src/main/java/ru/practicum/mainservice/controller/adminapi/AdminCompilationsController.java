@@ -1,11 +1,14 @@
 package ru.practicum.mainservice.controller.adminapi;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.mainservice.data.dto.NewCompilationDto;
+import ru.practicum.mainservice.data.dto.UpdateCompilationRequest;
+import ru.practicum.mainservice.data.model.Compilations;
 import ru.practicum.mainservice.service.interfaces.CompilationsService;
-import ru.practicum.statsdto.dto.CompilationsDto;
 
 @Slf4j
 @RestController
@@ -15,24 +18,23 @@ public class AdminCompilationsController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/admin/compilations")
-    public CompilationsDto postCompilations(@RequestBody final CompilationsDto dto) {
+    public Compilations postCompilations(@Valid @RequestBody final NewCompilationDto dto) {
         log.info("POST /compilations <- {}", dto);
         return service.createCompilation(dto);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/admin/compilations/{compId}")
-    public void deleteCompilations(@PathVariable final int compId) {
+    public void deleteCompilations(@PathVariable final Long compId) {
         log.info("DELETE /compilations/{compId} <- {}", compId);
         service.deleteCompilation(compId);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/admin/compilations/{compId}")
-    public CompilationsDto updateCompilations(@PathVariable final int compId,
-                                              @RequestBody final CompilationsDto dto) {
+    public Compilations updateCompilations(@PathVariable final Long compId,
+                                           @Valid @RequestBody final UpdateCompilationRequest dto) {
         log.info("PATCH /compilations/{compId} <- {}", compId);
-        dto.setId(compId);
-        return service.updateCompilation(dto);
+        return service.updateCompilation(compId, dto);
     }
 }

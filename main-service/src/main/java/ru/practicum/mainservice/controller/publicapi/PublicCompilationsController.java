@@ -1,13 +1,13 @@
 package ru.practicum.mainservice.controller.publicapi;
 
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.mainservice.model.RequestParameters;
+import ru.practicum.mainservice.data.model.Compilations;
 import ru.practicum.mainservice.service.interfaces.CompilationsService;
-import ru.practicum.statsdto.dto.CompilationsDto;
 
 import java.util.List;
 
@@ -19,21 +19,16 @@ public class PublicCompilationsController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/compilations")
-    public List<CompilationsDto> getCompilations(@RequestParam(required = false) final boolean pinned,
-                                                 @RequestParam(required = false) final int from,
-                                                 @RequestParam(required = false) final int size) {
+    public List<Compilations> getCompilations(@RequestParam(required = false) Boolean pinned,
+                                              @PositiveOrZero @RequestParam(required = false, defaultValue = "0") final Integer from,
+                                              @PositiveOrZero @RequestParam(required = false, defaultValue = "10") final Integer size) {
         log.info("GET /compilations");
-        return service.getCompilations(
-                RequestParameters.builder()
-                        .pinned(pinned)
-                        .page(PageRequest.of(from / size, size))
-                        .build()
-        );
+        return service.getCompilations(pinned, PageRequest.of(from / size, size));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{compId}")
-    public CompilationsDto getCompilation(@PathVariable final int compId) {
+    @GetMapping("/compilations/{compId}")
+    public Compilations getCompilation(@PositiveOrZero @PathVariable final Long compId) {
         log.info("GET /compilations/{compId}");
         return service.getCompilation(compId);
     }

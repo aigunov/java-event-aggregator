@@ -1,4 +1,4 @@
-package ru.practicum.mainservice.model;
+package ru.practicum.mainservice.data.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,7 +17,8 @@ import java.time.LocalDateTime;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "event_seq")
+    @SequenceGenerator(name = "event_seq", initialValue = 0, allocationSize = 1)
     private long id;
 
     @Column(name = "annotation")
@@ -29,26 +30,23 @@ public class Event {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "createdOn")
+    @Column(name = "created_on")
     private LocalDateTime createdOn;
 
-    @Column(name = "eventDate")
+    @Column(name = "event_date")
     private LocalDateTime eventDate;
 
-    @Column(name = "publishedOn")
+    @Column(name = "published_on")
     private LocalDateTime publishedOn;
 
     @Column(name = "paid")
-    private boolean paid;
+    private Boolean paid;
 
-    @Column(name = "participantLimit")
-    private int participantLimit;
+    @Column(name = "participant_limit")
+    private Long participantLimit;
 
-    @Column(name = "requestModeration")
-    private boolean requestModeration;
-
-    @Column(name = "views")
-    private int views;
+    @Column(name = "request_moderation")
+    private Boolean requestModeration;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "state")
@@ -57,7 +55,7 @@ public class Event {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "initiator")
-    private User user;
+    private User initiator;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -65,8 +63,8 @@ public class Event {
     private Category category;
 
     @Column(name = "lat")
-    private double lat;
+    private Double lat;
 
     @Column(name = "lon")
-    private double lon;
+    private Double lon;
 }

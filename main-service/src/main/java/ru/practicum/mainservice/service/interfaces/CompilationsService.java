@@ -1,18 +1,20 @@
 package ru.practicum.mainservice.service.interfaces;
 
-import ru.practicum.mainservice.model.RequestParameters;
-import ru.practicum.statsdto.dto.CompilationsDto;
+import org.springframework.data.domain.PageRequest;
+import ru.practicum.mainservice.data.dto.NewCompilationDto;
+import ru.practicum.mainservice.data.dto.UpdateCompilationRequest;
+import ru.practicum.mainservice.data.model.Compilations;
 
 import java.util.List;
 
 public interface CompilationsService {
-    List<CompilationsDto> getCompilations(final RequestParameters body);
+    List<Compilations> getCompilations(final Boolean pinned, final PageRequest pageRequest);
 
-    CompilationsDto getCompilation(int compId);
+    Compilations getCompilation(Long compId);
 
-    CompilationsDto createCompilation(final CompilationsDto dto);
+    Compilations createCompilation(final NewCompilationDto dto);
 
-    void deleteCompilation(final int compId);
+    void deleteCompilation(final Long compId);
 
-    CompilationsDto updateCompilation(final CompilationsDto dto);
+    Compilations updateCompilation(final Long compId, final UpdateCompilationRequest dto);
 }

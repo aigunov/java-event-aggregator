@@ -1,17 +1,19 @@
 package ru.practicum.mainservice.service.interfaces;
 
+import org.springframework.data.domain.PageRequest;
+import ru.practicum.mainservice.data.dto.CategoryCreate;
 import ru.practicum.statsdto.dto.CategoryDto;
 
 import java.util.List;
 
 public interface CategoriesService {
-    List<CategoryDto> getCategories();
+    List<CategoryDto> getCategories(final PageRequest of);
 
-    CategoryDto getCategory(final int catId);
+    CategoryDto getCategory(final Long catId);
 
-    CategoryDto createCategory(final CategoryDto dto);
+    CategoryDto createCategory(final CategoryCreate dto);
 
-    void deleteCategory(final int catId);
+    void deleteCategory(final Long catId);
 
     CategoryDto updateCategory(final CategoryDto dto);
 }
