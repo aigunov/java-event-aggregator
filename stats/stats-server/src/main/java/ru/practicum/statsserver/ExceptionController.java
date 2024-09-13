@@ -14,7 +14,7 @@ public class ExceptionController {
 
     @ExceptionHandler(NoValidParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String,String> handleNOValidParameter(RuntimeException e) {
+    public Map<String, String> handleNOValidParameter(RuntimeException e) {
         return Map.of("Ошибка: ", e.getMessage());
     }
 }

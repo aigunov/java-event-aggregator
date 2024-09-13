@@ -36,7 +36,7 @@ public final class Controller {
                                         @RequestParam(defaultValue = "false") final Boolean unique) {
         log.info("GET /stats <- with start={}, end={} uri={} unique={}", start, end, uris, unique);
 
-        if(start.isAfter(end)) {
+        if (start.isAfter(end)) {
             throw new NoValidParameterException("Start date and end date must be before end date");
         }
         return service.getViewStats(start, end, uris, unique);
