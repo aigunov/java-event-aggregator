@@ -17,7 +17,6 @@ import ru.practicum.statsdto.dto.URLParameter;
 import java.util.List;
 import java.util.Map;
 
-//@RequiredArgsConstructor()
 @AllArgsConstructor
 @Service
 public class StatsClient {
