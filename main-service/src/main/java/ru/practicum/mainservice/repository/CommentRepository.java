@@ -18,10 +18,10 @@ import java.util.Set;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Query(value = """
-            select * 
+            select *
             from comments as c
             where c.event_id = :eventId
-            and c.id in (:ids) 
+            and c.id in (:ids)
             """, nativeQuery = true)
     List<Comment> getCommentsByIdsAndEventId(@Param("ids") final Set<Long> ids, @Param("eventId") final Long eventId);
 
