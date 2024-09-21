@@ -1,8 +1,8 @@
 package ru.practicum.mainservice.service.interfaces;
 
 import org.springframework.data.domain.PageRequest;
-import ru.practicum.mainservice.data.dto.NewCompilationDto;
-import ru.practicum.mainservice.data.dto.UpdateCompilationRequest;
+import ru.practicum.mainservice.data.dto.compilation.NewCompilationDto;
+import ru.practicum.mainservice.data.dto.compilation.UpdateCompilationRequest;
 import ru.practicum.mainservice.data.model.Compilations;
 
 import java.util.List;

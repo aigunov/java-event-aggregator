@@ -1,10 +1,10 @@
 package ru.practicum.mainservice.service.interfaces;
 
 import org.springframework.data.domain.PageRequest;
-import ru.practicum.mainservice.data.dto.EventResponseDto;
-import ru.practicum.mainservice.data.dto.NewEventDto;
-import ru.practicum.mainservice.data.dto.UpdateEventAdminRequest;
-import ru.practicum.mainservice.data.dto.UpdateEventUserRequest;
+import ru.practicum.mainservice.data.dto.event.EventResponseDto;
+import ru.practicum.mainservice.data.dto.event.NewEventDto;
+import ru.practicum.mainservice.data.dto.event.UpdateEventAdminRequest;
+import ru.practicum.mainservice.data.dto.event.UpdateEventUserRequest;
 import ru.practicum.mainservice.data.model.RequestParameters;
 
 import java.util.List;

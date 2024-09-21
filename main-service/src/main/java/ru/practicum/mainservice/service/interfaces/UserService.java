@@ -1,7 +1,7 @@
 package ru.practicum.mainservice.service.interfaces;
 
 import org.springframework.data.domain.PageRequest;
-import ru.practicum.mainservice.data.dto.NewUserRequest;
+import ru.practicum.mainservice.data.dto.user.NewUserRequest;
 import ru.practicum.statsdto.dto.UserDto;
 
 import java.util.List;

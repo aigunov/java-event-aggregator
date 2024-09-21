@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.mainservice.data.dto.CategoryCreate;
 import ru.practicum.mainservice.data.model.Category;
-import ru.practicum.mainservice.data.model.EntityUpdateConflict;
+import ru.practicum.mainservice.data.model.exceptions.EntityUpdateConflict;
 import ru.practicum.mainservice.mapper.Mapper;
 import ru.practicum.mainservice.repository.CategoriesRepository;
 import ru.practicum.mainservice.repository.EventRepository;

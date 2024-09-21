@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.mainservice.data.dto.NewUserRequest;
+import ru.practicum.mainservice.data.dto.user.NewUserRequest;
 import ru.practicum.mainservice.data.model.User;
 import ru.practicum.mainservice.mapper.Mapper;
 import ru.practicum.mainservice.repository.UserRepository;

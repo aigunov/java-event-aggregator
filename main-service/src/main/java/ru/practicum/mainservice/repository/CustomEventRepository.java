@@ -1,6 +1,6 @@
 package ru.practicum.mainservice.repository;
 
-import ru.practicum.mainservice.data.dto.EventResponseDto;
+import ru.practicum.mainservice.data.dto.event.EventResponseDto;
 import ru.practicum.mainservice.data.model.RequestParameters;
 
 import java.util.List;

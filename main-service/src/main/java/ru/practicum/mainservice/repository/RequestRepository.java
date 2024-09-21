@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.practicum.mainservice.data.model.Request;
+import ru.practicum.mainservice.data.model.enums.Status;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long>, CustomRequestRepository {
@@ -27,4 +29,6 @@ public interface RequestRepository extends JpaRepository<Request, Long>, CustomR
 
 
     List<Request> findAllRequestsByIdAndRequesterId(final Long id, final Long requesterId);
+
+    boolean existsByRequesterIdAndEventIdAndStatusIn(final Long requesterId, final Long eventId, final List<Status> statuses);
 }

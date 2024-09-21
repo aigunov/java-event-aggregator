@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
-import ru.practicum.mainservice.data.model.EntityCreationDataIncorrect;
-import ru.practicum.mainservice.data.model.EntityUpdateConflict;
-import ru.practicum.mainservice.data.model.NoValidParameter;
+import ru.practicum.mainservice.data.model.exceptions.CommentActionException;
+import ru.practicum.mainservice.data.model.exceptions.EntityCreationDataIncorrect;
+import ru.practicum.mainservice.data.model.exceptions.EntityUpdateConflict;
+import ru.practicum.mainservice.data.model.exceptions.NoValidParameter;
 
 import java.util.List;
 import java.util.Map;
@@ -58,7 +59,7 @@ public class ExceptionController {
 
     @ExceptionHandler(NoSuchElementException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> handleNotFoundEntity(RuntimeException e) {
+    public Map<String, String> handleNotFoundEntity(NoSuchElementException e) {
         log.error("Получен статус 404 NOT_FOUND {}", e.getMessage());
         return Map.of("Ошибка: ", e.getMessage());
     }
@@ -74,6 +75,13 @@ public class ExceptionController {
     @ResponseStatus(HttpStatus.CONFLICT)
     public Map<String, String> handleConflict(final EntityCreationDataIncorrect e) {
         log.error("Получен статус 409 CONFLICT {}", e.getMessage());
+        return Map.of("Ошибка", e.getMessage());
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Map<String, String> handleCommentException(final CommentActionException e){
+        log.error("Получен Статус 409 CONFLIC {}", e.getMessage());
         return Map.of("Ошибка", e.getMessage());
     }
 

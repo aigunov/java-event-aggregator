@@ -1,4 +1,4 @@
-package ru.practicum.mainservice.data.dto;
+package ru.practicum.mainservice.data.dto.compilation;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;

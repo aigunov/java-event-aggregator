@@ -1,4 +1,4 @@
-package ru.practicum.mainservice.data.dto;
+package ru.practicum.mainservice.data.dto.event;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.Valid;

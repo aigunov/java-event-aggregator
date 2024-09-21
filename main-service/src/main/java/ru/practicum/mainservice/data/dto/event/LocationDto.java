@@ -1,4 +1,4 @@
-package ru.practicum.mainservice.data.dto;
+package ru.practicum.mainservice.data.dto.event;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

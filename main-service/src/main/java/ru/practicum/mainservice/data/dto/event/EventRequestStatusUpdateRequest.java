@@ -1,4 +1,4 @@
-package ru.practicum.mainservice.data.dto;
+package ru.practicum.mainservice.data.dto.event;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

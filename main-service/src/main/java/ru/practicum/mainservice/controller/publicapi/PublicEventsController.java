@@ -8,9 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.mainservice.data.dto.EventResponseDto;
+import ru.practicum.mainservice.data.dto.event.EventResponseDto;
 import ru.practicum.mainservice.data.model.RequestParameters;
-import ru.practicum.mainservice.data.model.Sort;
+import ru.practicum.mainservice.data.model.enums.Sort;
 import ru.practicum.mainservice.service.interfaces.EventService;
 import ru.practicum.mainservice.stat.StatAdapter;
 

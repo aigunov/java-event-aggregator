@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.mainservice.data.dto.NewUserRequest;
+import ru.practicum.mainservice.data.dto.user.NewUserRequest;
 import ru.practicum.mainservice.service.interfaces.UserService;
 import ru.practicum.statsdto.dto.UserDto;
 

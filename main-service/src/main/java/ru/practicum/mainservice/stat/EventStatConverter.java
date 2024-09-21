@@ -3,7 +3,7 @@ package ru.practicum.mainservice.stat;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ru.practicum.mainservice.data.dto.EventResponseDto;
+import ru.practicum.mainservice.data.dto.event.EventResponseDto;
 import ru.practicum.statsdto.dto.ViewStats;
 
 import java.util.List;

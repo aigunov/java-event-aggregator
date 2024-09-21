@@ -1,4 +1,4 @@
-package ru.practicum.mainservice.data.dto;
+package ru.practicum.mainservice.data.dto.event;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.Valid;
@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.mainservice.data.model.NoValidParameter;
+import ru.practicum.mainservice.data.model.exceptions.NoValidParameter;
 
 import java.time.LocalDateTime;
 
