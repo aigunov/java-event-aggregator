@@ -8,7 +8,6 @@ import ru.practicum.mainservice.data.model.Request;
 import ru.practicum.mainservice.data.model.enums.Status;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long>, CustomRequestRepository {

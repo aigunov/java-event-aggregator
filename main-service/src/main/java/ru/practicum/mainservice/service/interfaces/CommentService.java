@@ -1,6 +1,5 @@
 package ru.practicum.mainservice.service.interfaces;
 
-import jakarta.validation.Valid;
 import org.springframework.data.domain.PageRequest;
 import ru.practicum.mainservice.data.dto.comment.CommentDto;
 import ru.practicum.mainservice.data.dto.comment.CommentStatusUpdateRequest;

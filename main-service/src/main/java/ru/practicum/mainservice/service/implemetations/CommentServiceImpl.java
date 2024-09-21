@@ -80,15 +80,15 @@ public class CommentServiceImpl implements CommentService {
         var user = userRepository.findById(userId).orElseThrow(NoSuchElementException::new);
         var event = eventRepository.findById(eventId).orElseThrow(NoSuchElementException::new);
 
-        if(event.getState()!= States.PUBLISHED){
+        if (event.getState() != States.PUBLISHED) {
             throw new CommentActionException("Комментировать неопубликованное событие невозможно");
         }
 
-        if(event.getInitiator().getId()==user.getId()){
+        if (event.getInitiator().getId() == user.getId()) {
             dto.setStatus(CommentStatus.APPROVED);
             dto.setPublishedOn(LocalDateTime.now());
-        }else{
-            if (!hasConfirmedRequestOnEvent(userId, eventId)){
+        } else {
+            if (!hasConfirmedRequestOnEvent(userId, eventId)) {
                 throw new CommentActionException("Пользователь не может оставлять комментарий не приняв участие в событии.");
             }
             dto.setStatus(CommentStatus.PENDING);
@@ -105,7 +105,7 @@ public class CommentServiceImpl implements CommentService {
         var event = eventRepository.findById(eventId).orElseThrow(NoSuchElementException::new);
         var comment = commentRepository.findById(commentId).orElseThrow(NoSuchElementException::new);
 
-        if(userId != comment.getAuthor().getId() && userId != event.getInitiator().getId()){
+        if (userId != comment.getAuthor().getId() && userId != event.getInitiator().getId()) {
             throw new CommentActionException("Комментарий могут удалять или автор или инициатор события");
         }
 
@@ -149,7 +149,7 @@ public class CommentServiceImpl implements CommentService {
         return dto;
     }
 
-    private boolean hasConfirmedRequestOnEvent(final long userId, final long eventId){
+    private boolean hasConfirmedRequestOnEvent(final long userId, final long eventId) {
         return requestRepository.existsByRequesterIdAndEventIdAndStatusIn(
                 userId,
                 eventId,

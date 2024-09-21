@@ -7,9 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import ru.practicum.mainservice.data.dto.comment.CommentDto;
 import ru.practicum.mainservice.data.model.Comment;
-import ru.practicum.mainservice.data.model.enums.CommentStatus;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,8 +23,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
             where c.event_id = :eventId
             and c.id in (:ids) 
             """, nativeQuery = true)
-    List<Comment> getCommentsByIdsAndEventId(@Param("ids") final Set<Long> ids,
-                                             @Param("eventId") final Long eventId);
+    List<Comment> getCommentsByIdsAndEventId(@Param("ids") final Set<Long> ids, @Param("eventId") final Long eventId);
 
     @Transactional
     @Modifying

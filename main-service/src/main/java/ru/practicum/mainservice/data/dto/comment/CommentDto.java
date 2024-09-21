@@ -3,7 +3,6 @@ package ru.practicum.mainservice.data.dto.comment;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import ru.practicum.mainservice.data.dto.user.UserShortDto;
 import ru.practicum.mainservice.data.model.enums.CommentStatus;
 import ru.practicum.statsdto.dto.UserDto;
 

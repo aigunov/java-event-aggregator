@@ -80,7 +80,7 @@ public class ExceptionController {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
-    public Map<String, String> handleCommentException(final CommentActionException e){
+    public Map<String, String> handleCommentException(final CommentActionException e) {
         log.error("Получен Статус 409 CONFLIC {}", e.getMessage());
         return Map.of("Ошибка", e.getMessage());
     }

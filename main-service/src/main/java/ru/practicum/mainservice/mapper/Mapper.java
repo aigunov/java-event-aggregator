@@ -1,7 +1,7 @@
 package ru.practicum.mainservice.mapper;
 
 import lombok.experimental.UtilityClass;
-import ru.practicum.mainservice.data.dto.*;
+import ru.practicum.mainservice.data.dto.RequestDto;
 import ru.practicum.mainservice.data.dto.comment.CommentDto;
 import ru.practicum.mainservice.data.dto.comment.CommentStatusUpdateResult;
 import ru.practicum.mainservice.data.dto.compilation.NewCompilationDto;
@@ -180,7 +180,7 @@ public class Mapper {
     }
 
 
-    public static CommentDto toCommentDto(final Comment comment){
+    public static CommentDto toCommentDto(final Comment comment) {
         return CommentDto.builder()
                 .id(comment.getId())
                 .eventId(comment.getEvent().getId())
