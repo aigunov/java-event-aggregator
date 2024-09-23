@@ -1,4 +1,4 @@
-package ru.practicum.mainservice.data.model;
+package ru.practicum.mainservice.data.model.enums;
 
 public enum States {
     PUBLISHED,  //  опубликованный,

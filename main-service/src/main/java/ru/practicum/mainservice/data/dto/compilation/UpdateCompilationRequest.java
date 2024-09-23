@@ -1,4 +1,4 @@
-package ru.practicum.mainservice.data.dto;
+package ru.practicum.mainservice.data.dto.compilation;
 
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

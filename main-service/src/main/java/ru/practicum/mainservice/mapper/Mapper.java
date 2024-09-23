@@ -1,11 +1,18 @@
 package ru.practicum.mainservice.mapper;
 
 import lombok.experimental.UtilityClass;
-import ru.practicum.mainservice.data.dto.*;
+import ru.practicum.mainservice.data.dto.RequestDto;
+import ru.practicum.mainservice.data.dto.comment.CommentDto;
+import ru.practicum.mainservice.data.dto.comment.CommentStatusUpdateResult;
+import ru.practicum.mainservice.data.dto.compilation.NewCompilationDto;
+import ru.practicum.mainservice.data.dto.compilation.UpdateCompilationRequest;
+import ru.practicum.mainservice.data.dto.event.*;
+import ru.practicum.mainservice.data.dto.user.NewUserRequest;
 import ru.practicum.mainservice.data.model.*;
 import ru.practicum.statsdto.dto.CategoryDto;
 import ru.practicum.statsdto.dto.UserDto;
 
+import java.util.List;
 import java.util.Set;
 
 @UtilityClass
@@ -159,6 +166,34 @@ public class Mapper {
                 .event(request.getEvent().getId())
                 .created(request.getCreated())
                 .status(request.getStatus())
+                .build();
+    }
+
+    public static Comment toComment(CommentDto dto, User currentUser, Event currentEvent) {
+        return Comment.builder()
+                .author(currentUser)
+                .description(dto.getDescription())
+                .event(currentEvent)
+                .status(dto.getStatus())
+                .publishedOn(dto.getPublishedOn())
+                .build();
+    }
+
+
+    public static CommentDto toCommentDto(final Comment comment) {
+        return CommentDto.builder()
+                .id(comment.getId())
+                .eventId(comment.getEvent().getId())
+                .description(comment.getDescription())
+                .user(toUserDto(comment.getAuthor()))
+                .publishedOn(comment.getPublishedOn())
+                .status(comment.getStatus())
+                .build();
+    }
+
+    public static CommentStatusUpdateResult concertToUpdatedResult(List<CommentDto> list) {
+        return CommentStatusUpdateResult.builder()
+                .resolvedComments(list)
                 .build();
     }
 }

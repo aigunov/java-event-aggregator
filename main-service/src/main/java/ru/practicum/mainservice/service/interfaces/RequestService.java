@@ -1,9 +1,9 @@
 package ru.practicum.mainservice.service.interfaces;
 
 import jakarta.validation.Valid;
-import ru.practicum.mainservice.data.dto.EventRequestStatusUpdateRequest;
-import ru.practicum.mainservice.data.dto.EventRequestStatusUpdateResult;
 import ru.practicum.mainservice.data.dto.RequestDto;
+import ru.practicum.mainservice.data.dto.event.EventRequestStatusUpdateRequest;
+import ru.practicum.mainservice.data.dto.event.EventRequestStatusUpdateResult;
 
 import java.util.List;
 

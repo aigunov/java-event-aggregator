@@ -4,7 +4,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.practicum.mainservice.data.model.Request;
-import ru.practicum.mainservice.data.model.Status;
+import ru.practicum.mainservice.data.model.enums.Status;
 import ru.practicum.mainservice.repository.CustomRequestRepository;
 
 import java.util.List;

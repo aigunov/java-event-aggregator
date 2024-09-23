@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import ru.practicum.mainservice.data.dto.EventResponseDto;
+import ru.practicum.mainservice.data.dto.event.EventResponseDto;
 import ru.practicum.statsclient.StatClient;
 import ru.practicum.statsdto.dto.StatDto;
 import ru.practicum.statsdto.dto.URLParameter;

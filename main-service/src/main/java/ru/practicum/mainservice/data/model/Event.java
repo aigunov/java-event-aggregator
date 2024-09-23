@@ -2,6 +2,7 @@ package ru.practicum.mainservice.data.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ru.practicum.mainservice.data.model.enums.States;
 
 import java.time.LocalDateTime;
 

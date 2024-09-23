@@ -2,6 +2,9 @@ package ru.practicum.mainservice.data.model;
 
 import lombok.*;
 import org.springframework.data.domain.PageRequest;
+import ru.practicum.mainservice.data.model.enums.Sort;
+import ru.practicum.mainservice.data.model.enums.States;
+import ru.practicum.mainservice.data.model.exceptions.NoValidParameter;
 
 import java.time.LocalDateTime;
 import java.util.List;
